@@ -12,13 +12,13 @@ import os
 import argparse
 
 def download_vqa():
-    os.system('wget http://visualqa.org/data/mscoco/vqa/Questions_Train_mscoco.zip -P zip/')
-    os.system('wget http://visualqa.org/data/mscoco/vqa/Questions_Val_mscoco.zip -P zip/')
-    os.system('wget http://visualqa.org/data/mscoco/vqa/Questions_Test_mscoco.zip -P zip/')
+    os.system('wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/Questions_Train_mscoco.zip -P zip/')
+    os.system('wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/Questions_Val_mscoco.zip -P zip/')
+    os.system('wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/Questions_Test_mscoco.zip -P zip/')
 
     # Download the VQA Annotations
-    os.system('wget http://visualqa.org/data/mscoco/vqa/Annotations_Train_mscoco.zip -P zip/')
-    os.system('wget http://visualqa.org/data/mscoco/vqa/Annotations_Val_mscoco.zip -P zip/')
+    os.system('wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/Annotations_Train_mscoco.zip -P zip/')
+    os.system('wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/Annotations_Val_mscoco.zip -P zip/')
 
 
     # Unzip the annotations
@@ -43,7 +43,7 @@ def main(params):
 
     if params['split'] == 1:
 
-        print 'Loading annotations and questions...'
+        print( 'Loading annotations and questions...')
         train_anno = json.load(open('annotations/mscoco_train2014_annotations.json', 'r'))
         val_anno = json.load(open('annotations/mscoco_val2014_annotations.json', 'r'))
 
@@ -72,7 +72,7 @@ def main(params):
 
             test.append({'ques_id': question_id, 'img_path': image_path, 'question': question, 'MC_ans': mc_ans, 'ans': ans})
     else:
-        print 'Loading annotations and questions...'
+        print( 'Loading annotations and questions...')
         train_anno = json.load(open('annotations/mscoco_train2014_annotations.json', 'r'))
         val_anno = json.load(open('annotations/mscoco_val2014_annotations.json', 'r'))
 
@@ -112,7 +112,7 @@ def main(params):
 
             test.append({'ques_id': question_id, 'img_path': image_path, 'question': question, 'MC_ans': mc_ans})
 
-    print 'Training sample %d, Testing sample %d...' %(len(train), len(test))
+    print( 'Training sample %d, Testing sample %d...' %(len(train), len(test)))
 
     json.dump(train, open('vqa_raw_train.json', 'w'))
     json.dump(test, open('vqa_raw_test.json', 'w'))
@@ -127,8 +127,8 @@ if __name__ == "__main__":
   
     args = parser.parse_args()
     params = vars(args)
-    print 'parsed input parameters:'
-    print json.dumps(params, indent = 2)
+    print( 'parsed input parameters:')
+    print( json.dumps(params, indent = 2))
     main(params)
 
 
