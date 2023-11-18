@@ -13,7 +13,7 @@ import argparse
 import pdb
 
 def download_cocoqa():
-    print('Downloading COCO-QA data from http://www.cs.toronto.edu/~mren/imageqa/data/cocoqa/cocoqa-2015-05-17.zip')
+    print(('Downloading COCO-QA data from http://www.cs.toronto.edu/~mren/imageqa/data/cocoqa/cocoqa-2015-05-17.zip'))
     os.system('wget http://www.cs.toronto.edu/~mren/imageqa/data/cocoqa/cocoqa-2015-05-17.zip -P zip/')
 
     # Unzip the annotations
@@ -28,7 +28,7 @@ def main(params):
     test = []
     imdir='%s/COCO_%s_%012d.jpg'
 
-    print 'Loading annotations and questions...'
+    print( 'Loading annotations and questions...')
 
     f = open('coco_qa/train/questions.txt', 'r')
     train_ques = []
@@ -139,8 +139,8 @@ if __name__ == "__main__":
     # input json  
     args = parser.parse_args()
     params = vars(args)
-    print 'parsed input parameters:'
-    print json.dumps(params, indent = 2)
+    print( 'parsed input parameters:')
+    print( json.dumps(params, indent = 2))
     main(params)
 
 
