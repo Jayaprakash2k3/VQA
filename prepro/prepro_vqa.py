@@ -53,7 +53,7 @@ def build_vocab_question(imgs, params):
     print( '\n'.join(map(str,cw[:20])))
 
     # print( some stats)
-    total_words = sum(counts.itervalues())
+    total_words = sum(counts.values())
     print( 'total words:', total_words)
     bad_words = [w for w,n in counts.items() if n <= count_thr]
     vocab = [w for w,n in counts.items() if n > count_thr]
